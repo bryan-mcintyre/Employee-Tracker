@@ -1,6 +1,5 @@
 const inquirer = require('inquirer')
 const { Pool } = require('pg')
-require('dotenv')
 
 const pool = new Pool(
     {
@@ -12,6 +11,10 @@ const pool = new Pool(
     console.log('Connected to the database')
 )
 pool.connect()
+
+start()
+
+function start() {
 
 inquirer.prompt([
     {
@@ -33,26 +36,29 @@ inquirer.prompt([
         addRole()
     } else if (response.choice === 'View all departments') {
         viewAllDepartments()
-    } else if (response.choice === 'Add dpeartment') {
+    } else if (response.choice === 'Add department') {
         addDepartment()
-    } return
-})
+    }
+})}
 
 function viewAllEmployees(rows) {
     pool.query('SELECT * FROM employee', function (err, {rows}) {
         console.table(rows)
+        start()
     })
 }
 
 function viewAllRoles() {
     pool.query('SELECT * FROM role', function (err, {rows}) {
         console.table(rows)
+        start()
     })
 }
 
 function viewAllDepartments() {
     pool.query('SELECT * FROM department', function (err, {rows}) {
         console.table(rows)
+        start()
     })
 }
 
@@ -81,6 +87,8 @@ function addEmployee() {
         const lastName = response.lastName
         const roleID = response.roleID
         pool.query(`INSERT INTO employee (id, first_name, last_name, role_id) VALUES ($1, $2, $3, $4)`, [id, firstName, lastName, roleID])
+
+        start()
     })
 }
 
@@ -104,18 +112,27 @@ function addRole() {
         const department = response.department
 
         pool.query('INSERT INTO role (title, salary, department_id) VALUES ($1, $2, $3)' [title, salary, department])
+
+        start()
     })
 }
 
 function addDepartment() {
     inquirer.prompt ([
         {
+            message: 'What is the department id?',
+            name: 'id'
+        },
+        {
             message: 'What is the name of the department?',
             name: 'department'
         }
     ]).then((response) => {
+        const id = response.id
         const department = response.department
 
-        pool.query('INSERT INTO department (name) VALUES ($1)' [department])
+        pool.query('INSERT INTO department (id, name) VALUES ($1, $2)' [id, department])
+
+        start()
     })
 }

@@ -31,8 +31,7 @@ CREATE DATABASE employee_tracker_db;
         last_name VARCHAR(30) NOT NULL,
         role_id INTEGER NOT NULL,
         FOREIGN KEY (role_id)
-        REFERENCES role(id)
-        ON DELETE SET NULL,
+        REFERENCES role(id),
         manager_id INTEGER,
         FOREIGN KEY (manager_id)
         REFERENCES employee(id)
