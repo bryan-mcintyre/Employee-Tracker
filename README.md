@@ -17,13 +17,13 @@ Download the codebase from GitHub -> run 'npm i' in the terminal to install pack
 ## Usage
 After installing the application open 'index.js' in the terminal and run 'node index.js' to start application. Follow the prompts on the screen to use the application. 
 
-Link to video showcasing application usage: 
+Link to video showcasing application usage: https://drive.google.com/file/d/1kcTDMXBgfyUgZk0UkKSL9k9mn2dMST40/view?usp=drive_link
 
 ## Future Development
 In future iterations the user will be able to sort employees by manager, role, and department. They'll also be able to to update an employees manager. The ablility to delete roles and departments will also be created at a future date.
 
 ## Issues
-None so far
+Application unexpectedly exits after a few of the functions and needs to be restarted using 'node index.js' in the terminal
 
 ## Credits
 The instructor offered some guidance on getting the tables to display in the terminal. I also consulted Google for assistance in some of the logic/syntax with integrating the inquirer and pg packages.
