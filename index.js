@@ -1,14 +1,14 @@
 const inquirer = require('inquirer')
 const { Pool } = require('pg')
 
-const pool = new Pool(
+const pool = new Pool (
     {
         user: 'postgres',
         password: 'RowtheBoat',
         host: 'localhost',
         database: 'employee_tracker_db'
     },
-    console.log('Connected to the database')
+    console.log('Connected to the database!')
 )
 pool.connect()
 
